@@ -144,7 +144,7 @@ export default class Box extends Component {
         return <div className="container">
             <div className="caption">
                 <span>得分：{this.state.activePoints.length - 3}</span>
-                <span class="message">{this.state.message}</span>
+                <span className="message">{this.state.message}</span>
             </div>
             <div className="box">{rows}</div>
         </div>

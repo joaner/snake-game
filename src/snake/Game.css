@@ -2,6 +2,19 @@
     text-align: center;
     margin: 30px auto;
 }
+h1 {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 1;
+}
+h1 img {
+    height: 22px;
+    vertical-align: top;
+    margin-left: 10px;
+}
+footer {
+    margin-top: 10px;
+}
 .container {
     display: inline-block;
 }
