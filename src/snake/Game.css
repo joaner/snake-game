@@ -1,20 +1,18 @@
 .game {
-    width: 400px;
+    text-align: center;
     margin: 30px auto;
 }
 .box {
-    width: 400px;
-    height: 400px;
     border: 1px solid #E8E8E8;
-    display: block;
+    display: inline-block;
 }
 
 .row {
     font-size: 0;
 }
 .point {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     display: inline-block;
 }
 .point.odd {
@@ -22,4 +20,20 @@
 }
 .point.even {
     background-color: #f7f7f7;
+}
+.point.active {
+    background-color: #000!important;
+}
+.point.target {
+    background-image: url('/assets/target.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.point.active.head {
+    background-image: url('/assets/head.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.point.active.target {
+    background-color: #000!important;
 }
