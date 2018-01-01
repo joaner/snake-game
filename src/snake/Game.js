@@ -8,11 +8,11 @@ class Game extends Component {
             <div className="game">
                 <h1>
                     贪吃蛇游戏
-                    <img src="/assets/game.svg"/>
+                    <img src="/assets/game.svg" alt="game icon"/>
                 </h1>
                 <Box></Box>
                 <footer>
-                    React App / <a href="https://github.com/joaner/snake-game" target="_blank">Github Project</a>
+                    React App / <a href="https://github.com/joaner/snake-game">Github Project</a>
                 </footer>
             </div>
         );

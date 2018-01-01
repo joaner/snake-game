@@ -77,13 +77,12 @@ export default class Box extends Component {
                         y += 1
                         break
                     default:
-                        throw new Error('暂停中')
-
+                        return
                 }
 
                 // if overflow
                 if (x < 0 || x >= this.state.size || y < 0 || y >= this.state.size) {
-                    throw new Error('撞墙啦')
+                    throw new Error('撞墙啦 >_<')
                 }
 
                 // if hit self
