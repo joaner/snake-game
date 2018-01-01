@@ -11,6 +11,7 @@ export default class Box extends Component {
             direction: null,
             targetPoint: [12,8],
             size: 24,
+            message: '任意键开始',
         }
     }
 
@@ -18,11 +19,10 @@ export default class Box extends Component {
         window.addEventListener('keydown', event => {
             let direction
 
+            // 不能向反方向掉头
             const activePoints = this.state.activePoints
             const head = activePoints[activePoints.length - 1]
             const last = activePoints[activePoints.length - 2]
-
-            console.log(head[0] - last[0], head[1] - last[1])
 
             switch (event.key) {
                 case 'ArrowRight':
@@ -45,6 +45,10 @@ export default class Box extends Component {
                         direction = 'down'
                     }
                     break
+                default:
+                    if (!this.state.direction) {
+                        direction = 'right'
+                    }
             }
 
             if (direction) {
@@ -57,37 +61,43 @@ export default class Box extends Component {
 
             const head = activePoints[activePoints.length - 1]
             let [x, y] = head
-            switch (this.state.direction) {
-                case 'left':
-                    x -= 1
-                    break
-                case 'right':
-                    x += 1
-                    break
-                case 'up':
-                    y -= 1
-                    break
-                case 'down':
-                    y += 1
-                    break
-                default:
-                    return
 
-            }
+            try {
+                switch (this.state.direction) {
+                    case 'left':
+                        x -= 1
+                        break
+                    case 'right':
+                        x += 1
+                        break
+                    case 'up':
+                        y -= 1
+                        break
+                    case 'down':
+                        y += 1
+                        break
+                    default:
+                        throw new Error('暂停中')
 
-            // if overflow
-            if (x < 0 || x >= this.state.size || y < 0 || y >= this.state.size) {
+                }
+
+                // if overflow
+                if (x < 0 || x >= this.state.size || y < 0 || y >= this.state.size) {
+                    throw new Error('撞墙啦')
+                }
+
+                // if hit self
+                const hitSelf = activePoints.find(point => this.isPointMatch([x, y], point))
+                if (hitSelf) {
+                    throw new Error('咬到自己啦')
+                }
+            } catch (e) {
+                this.setState({ message: e.message })
                 return
             }
+
 
             const newHead = [x, y]
-
-            // if hit self
-            const hitSelf = activePoints.find(point => this.isPointMatch(newHead, point))
-            if (hitSelf) {
-                return
-            }
-
             if (this.isPointMatch(newHead, this.state.targetPoint)) {
                 this.setState({ targetPoint: this.makeTargetPoint() })
             } else {
@@ -95,7 +105,7 @@ export default class Box extends Component {
             }
             activePoints.push(newHead)
 
-            this.setState({ activePoints })
+            this.setState({ activePoints, message: '' })
         }, 300)
     }
 
@@ -131,7 +141,13 @@ export default class Box extends Component {
             const key = `point-${y}`
             return <div className="row" key={key}>{cells}</div>
         })
-        return <div className="box">{rows}</div>
+        return <div className="container">
+            <div className="caption">
+                <span>得分：{this.state.activePoints.length - 3}</span>
+                <span class="message">{this.state.message}</span>
+            </div>
+            <div className="box">{rows}</div>
+        </div>
     }
 
     /**

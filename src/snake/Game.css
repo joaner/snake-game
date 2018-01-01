@@ -2,6 +2,18 @@
     text-align: center;
     margin: 30px auto;
 }
+.container {
+    display: inline-block;
+}
+.caption {
+    text-align: left;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.caption .message {
+    color: indianred;
+}
 .box {
     border: 1px solid #E8E8E8;
     display: inline-block;
@@ -22,7 +34,7 @@
     background-color: #f7f7f7;
 }
 .point.active {
-    background-color: #000!important;
+    background-color: green!important;
 }
 .point.target {
     background-image: url('/assets/target.svg');
