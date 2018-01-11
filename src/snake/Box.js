@@ -143,10 +143,17 @@ export default class Box extends Component {
 
         return <div className="container">
             <div className="caption">
-                <span>得分：{this.state.activePoints.length - 3}</span>
+                <div>
+                    <img src="/assets/target.svg" width="14" alt="score"/>
+                    &nbsp;
+                    <span>{this.state.activePoints.length - 3}</span>
+                </div>
                 <span className="message">{this.state.message}</span>
             </div>
-            <div className={'box direction-' + this.state.direction}>{rows}</div>
+            <div className={'box direction-' + this.state.direction}>
+                {rows}
+                <div className="modal-tips"></div>
+            </div>
         </div>
     }
 
