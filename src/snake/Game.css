@@ -41,13 +41,13 @@ footer {
     display: inline-block;
 }
 .point.odd {
-    background-color: #FFF;
+    background-color: #aad751;
 }
 .point.even {
-    background-color: #f7f7f7;
+    background-color: #a2d149;
 }
 .point.active {
-    background-color: green!important;
+    background-color: #4774e9!important;
 }
 .point.target {
     background-image: url('/assets/target.svg');
