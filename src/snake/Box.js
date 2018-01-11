@@ -140,12 +140,13 @@ export default class Box extends Component {
             const key = `point-${y}`
             return <div className="row" key={key}>{cells}</div>
         })
+
         return <div className="container">
             <div className="caption">
                 <span>得分：{this.state.activePoints.length - 3}</span>
                 <span className="message">{this.state.message}</span>
             </div>
-            <div className="box">{rows}</div>
+            <div className={'box direction-' + this.state.direction}>{rows}</div>
         </div>
     }
 

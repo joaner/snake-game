@@ -40,10 +40,10 @@ footer {
     height: 16px;
     display: inline-block;
 }
-.point.odd {
+.point.odd, .point.odd.active.head::before {
     background-color: #aad751;
 }
-.point.even {
+.point.even, .point.even.active.head::before {
     background-color: #a2d149;
 }
 .point.active {
@@ -58,7 +58,40 @@ footer {
     background-image: url('/assets/head.svg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
+
+.point.active.head::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -1;
+    position: relative;
+}
+
+/* direction show in head */
+.box.direction-left .point.active.head {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+.box.direction-right .point.active.head {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.box.direction-up .point.active.head {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.box.direction-down .point.active.head {
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+
 .point.active.target {
     background-color: #000!important;
 }
